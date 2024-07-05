@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% comment %} extend ra block tag sabai ma use garne html file ma {% endcomment %}
+{% block contactactive %}
+    active
+{% endblock contactactive %}
+{% block body %}<center><hr><br><br>
+    <form method="POST" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" placeholder="Name" name="name"><br><br>
+        <label>Phone Number:</label>
+        <input type="phone" placeholder="Phone number" name="phone"><br><br>
+        <label>Email address:</label>
+        <input type="email" placeholder="Email" name="email"><br><br>
+        <p><label for="content">Describe your issue:</label></p>
+        <textarea id="content" name="content" rows="6" cols="50"></textarea><br><br>    
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock body %}

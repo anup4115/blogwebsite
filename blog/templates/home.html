@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 20px;
+        overflow-x: auto;
+        justify-content: center; /* Center the cards horizontally */
+        align-items: center; /* Center the cards vertically */
+        margin-top: 50px; /* Adjust margin as needed */
+    }
+
+    .card {
+        max-width: 300px;
+        border-radius: 0.6rem;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+        border: 1px solid;
+        height: 400px; /* Adjust the height as needed */
+    }
+
+    .title {
+        color: #111827;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem; /* Add margin below the title */
+    }
+
+    .desc {
+        margin-top: 0.5rem;
+        color: #6B7280;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .action {
+        display: inline-flex;
+        margin-top: 1rem;
+        color: #ffffff;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        align-items: center;
+        gap: 0.25rem;
+        background-color: #2563EB;
+        padding: 8px 12px; /* Adjust padding as needed */
+        border-radius: 4px;
+        text-decoration: none; /* Remove underlines for links */
+    }
+
+    .action span {
+        transition: .3s ease;
+    }
+
+    .action:hover span {
+        transform: translateX(4px);
+    }
+</style>
+
+<div class="card-container">
+    {% for data in data|slice:":5" %}
+    <div class="card">
+        <div class="image">
+            <img src="{{data.image.url}}" style="max-width: 100%; height: auto;" alt="{{data.title}}">
+        </div>
+        
+        <div class="content">
+            <a href="#">
+                <span class="title">
+                    {{data.title}}
+                </span>
+            </a>
+
+            <p class="desc">
+                {{data.content|safe|truncatechars_html:150}}
+            </p>
+
+            <a class="action" href="{% url 'blogPost' data.slug %}">
+                Read more...
+                <span aria-hidden="true">
+                    →
+                </span>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
+{% block homeactive %}
+    active
+{% endblock homeactive %}

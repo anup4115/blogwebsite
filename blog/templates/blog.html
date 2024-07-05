@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% comment %} extends le base.html bata template inheritance garxa {% endcomment %}
+{% block blogactive %}
+    active
+{% endblock blogactive %}
+{% block body %}
+    {% for post in post %} 
+    {% comment %} #paxadi ko post vaneko dictionary ko key ho {% endcomment %}
+    <h1>{{post.title}}</h1>
+    {% comment %} for i in post vako vaye tala i.title,i.content... hunthyo {% endcomment %}
+    <img src="{{post.image.url}}" height="400" width="600">
+    {% comment %} src ko lagi .url halnai parxa {% endcomment %}
+    <p>{{post.content}}</p>
+    <p>{{post.author}}</p>
+    <p>{{post.timestamp}}</p>
+    {% endfor %}
+{% endblock body %}

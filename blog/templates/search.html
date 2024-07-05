@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block body %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .card {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .meta {
+        color: #888;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .description {
+        line-height: 1.6;
+        color: #555;
+    }
+
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #2563EB;
+    }
+</style>
+
+{% for data in data %}
+<div class="card">
+<img src="{{data.image.url}}" alt="Blog Post Image">
+<div class="content">
+    <h1 class="title">{{data.title}}</h1>
+    <p class="meta">{{data.timestamp}}</p>
+    <p class="description">
+        {{data.content}}
+    </p>
+    <a href="#" class="back-link">Back to Blog</a>
+</div>
+</div>
+{% endfor %}
+
+{% endblock body %}
